@@ -57,9 +57,18 @@
                     <main class="mt-6">
                         <div class="" style="height:500px; border: 1px solid #bbb">
 
-                            <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center">
-                                간단한 소셜 미디어 웹사이트
+                            <div style="width: 100%; height: auto; display: flex; justify-content: center; align-items: center; flex-direction: column">
+
+                                <div>
+                                    간단한 소셜 미디어 웹사이트
+                                </div>
+
+                                <div>
+                                    <a href="/articles/create">글쓰기</a>
+                                </div>
                             </div>
+
+
                         </div>
                     </main>
 
