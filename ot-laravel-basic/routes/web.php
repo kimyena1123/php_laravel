@@ -45,12 +45,15 @@ Route::post('/articles', function(Request $request){
     //]);
 
     //4. Eloquent ORM -> 이  방식으로 하면 created_at과 updated_at도 자동으로 들어가서 저장된다. 1,2,3번은 안해줌
-    $article = new \App\Models\Article;
-    $article->body = $input['body'];
-    $article->user_id = Auth::id();
-    $article->save();
+//    $article = new \App\Models\Article;
+//    $article->body = $input['body'];
+//    $article->user_id = Auth::id();
+//    $article->save();
 
-
+    Article::create([
+        'body' => $input['body'],
+        'user_id' => Auth::id(),
+    ]);
 
     return 'hello';
 });
