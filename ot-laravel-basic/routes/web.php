@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,27 +34,8 @@ Route::post('/articles', function(Request $request){
         ],
     ]);
 
-    $host = config('database.connections.mysql.host');
-    $dbname = config('database.connections.mysql.database');
-    $username = config('database.connections.mysql.username');
-    $password = config('database.connections.mysql.password');
-
-
-    //pdo 객체
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-
-    //쿼리 준비
-    $stmt = $conn->prepare("INSERT INTO articles (body, user_id) VALUES (:body, :user_id)");
-
-    //쿼리 값을 설정
-    $body = $request->input('body'); // body값 가져와서 변수에 담기
-    //dd($request->collect());
-
-    $stmt->bindValue(':body', $input['body']);
-    $stmt->bindValue(':user_id', Auth::id());
-
-    //실행
-    $stmt->execute();
+    //DB 파사드를 이용하는 방법
+    DB::statement("INSERT INTO articles (body, user_id) VALUES (:body, :user_id)", ['body'=>$input['body'],'user_id'=>Auth::id()]);
 
     return 'hello';
 });
