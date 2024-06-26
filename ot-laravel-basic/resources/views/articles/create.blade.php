@@ -24,10 +24,10 @@
                 저장하기
             </button>
         </form>
-        {{--        {{ dd($errors -> first('body') ) }}--}}
-        {{--        {{ dd($errors -> get('body') ) }}--}}
+        {{-- {{ dd($errors -> first('body')) }} or {{ dd($errors -> get('body')) }} --}}
         {{--        session에 있는 값을 확인하려면 request의 old() 혹은 old('body')를 사용할 수 있다--}}
         {{--        {{ dd(request()->session())}}--}}
+
     </div>
     </body>
 </html>
