@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +35,22 @@ Route::post('/articles', function(Request $request){
         ],
     ]);
 
-    //DB 파사드를 이용하는 방법
-    DB::statement("INSERT INTO articles (body, user_id) VALUES (:body, :user_id)", ['body'=>$input['body'],'user_id'=>Auth::id()]);
+    //2. DB 파사드를 이용하는 방법
+    //DB::statement("INSERT INTO articles (body, user_id) VALUES (:body, :user_id)", ['body'=>$input['body'],'user_id'=>Auth::id()]);
+
+    //3. 쿼리 빌더를 사용하는 방법
+    //DB::table('articles')->insert([
+    //    'body'=>$input['body'],
+    //    'user_id'=>Auth::id(),
+    //]);
+
+    //4. Eloquent ORM -> 이  방식으로 하면 created_at과 updated_at도 자동으로 들어가서 저장된다. 1,2,3번은 안해줌
+    $article = new \App\Models\Article;
+    $article->body = $input['body'];
+    $article->user_id = Auth::id();
+    $article->save();
+
+
 
     return 'hello';
 });
