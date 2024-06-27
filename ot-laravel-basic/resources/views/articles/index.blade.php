@@ -21,5 +21,16 @@
         @endauth
 {{--    로그인한 사람한테만 보여주는 blade 문법 : @auth와 @endauth   --}}
     </div>
+
+{{--    <ul>--}}
+{{--        @for($i = 0; $i < $totalCount / $perPage; $i++)--}}
+{{--            <li><a href="/articles?page={{$i+1}}&per_page={{$perPage}}">{{$i+1}}</a></li>--}}
+{{--        @endfor--}}
+{{--    </ul>--}}
+
+    <div style="width: 100%; height: 300px; display: flex;">
+        {{ $articles -> links() }}
+    </div>
+
     </body>
 </html>

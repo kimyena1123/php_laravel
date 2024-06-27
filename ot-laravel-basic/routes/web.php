@@ -49,13 +49,23 @@ Route::post('/articles', function(Request $request){
 });
 
 //글 목록 페이지
-Route::get('/articles', function(){
+Route::get('/articles', function(Request $request){
+    $title = '글 목록';
+    $perPage = $request->input('per_page', 2);
+
     $articles = Article::select('body','created_at')
                         ->orderby('created_at', 'desc')
-                        ->get();
-    $title = '글 목록';
+                        ->paginate($perPage);
 
-//    return view('articles.index', ['articles' => $articles]);
-    return view('articles.index')->with('articles', $articles)->with('title', $title);
+    $articles->withQueryString();
+    $articles->appends(['filter'=>'name']);
+
+    return view('articles.index',
+        [
+            'title'=>$title,
+            'articles' => $articles,
+        ]
+    );
+//    return view('articles.index')->with('articles', $articles)->with('title', $title);
 
 });
