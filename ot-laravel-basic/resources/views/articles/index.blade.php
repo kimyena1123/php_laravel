@@ -9,6 +9,8 @@
     <body class="bg-blue-100">
     <div class="container p-5">
         <h1 class="text-2xl">{{ $title }}</h1>
+        <p><a href="/articles/create/">글 작성하기</a></p>
+
         @auth
         @foreach($articles as $article) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
             <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">

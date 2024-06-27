@@ -23,9 +23,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+//글 저장하는 페이지
 Route::get('/articles/create', function(){
     return view('articles.create');
 });
+
+// 글 저장하는 method
 Route::post('/articles', function(Request $request){
     //비어있지 않고, 문자열이고, 255자를 넘으면 안된다.
     $input = $request->validate([
@@ -42,12 +45,14 @@ Route::post('/articles', function(Request $request){
         'user_id' => Auth::id(),
     ]);
 
-
     return 'hello';
 });
 
+//글 목록 페이지
 Route::get('/articles', function(){
-    $articles = Article::all();
+    $articles = Article::select('body','created_at')
+                        ->orderby('created_at', 'desc')
+                        ->get();
     $title = '글 목록';
 
 //    return view('articles.index', ['articles' => $articles]);
