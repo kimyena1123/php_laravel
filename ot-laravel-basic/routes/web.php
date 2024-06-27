@@ -48,8 +48,9 @@ Route::post('/articles', function(Request $request){
 
 Route::get('/articles', function(){
     $articles = Article::all();
+    $title = '글 목록';
 
 //    return view('articles.index', ['articles' => $articles]);
-    return view('articles.index')->with('articles', $articles);
+    return view('articles.index')->with('articles', $articles)->with('title', $title);
 
 });
