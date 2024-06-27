@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\Article;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -57,15 +58,13 @@ Route::get('/articles', function(Request $request){
                         ->orderby('created_at', 'desc')
                         ->paginate($perPage);
 
-    $articles->withQueryString();
-    $articles->appends(['filter'=>'name']);
-
     return view('articles.index',
         [
             'title'=>$title,
             'articles' => $articles,
         ]
     );
+
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
 
 });

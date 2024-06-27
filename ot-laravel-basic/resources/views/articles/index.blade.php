@@ -15,7 +15,7 @@
         @foreach($articles as $article) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
             <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">
                 <p>{{ $article->body }}</p>
-                <p>{{ $article->created_at }} </p>
+                <p>{{ $article->created_at->diffForHumans()}} </p>
             </div>
         @endforeach
         @endauth
