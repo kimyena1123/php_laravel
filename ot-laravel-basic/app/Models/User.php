@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function articles(){
+    public function articles():HasMany{
         //유저는 여러 개의 글을 가질 수 있다 : One To Many -> HasMany
         //유저 모델에서 articles 모델에 접근하면, 유저가 작성한 모든 글을 조회할 수 있다.
         return $this->hasMany(Article::class);
