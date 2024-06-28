@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function articles(){
+        //유저는 여러 개의 글을 가질 수 있다 : One To Many -> HasMany
+        //유저 모델에서 articles 모델에 접근하면, 유저가 작성한 모든 글을 조회할 수 있다.
+        return $this->hasMany(Article::class);
+    }
 }

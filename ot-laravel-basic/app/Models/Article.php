@@ -11,4 +11,11 @@ class Article extends Model
 
     //    protected $guarded = ['id'];
     protected $fillable = ['body', 'user_id'];
+
+    public function user()
+    {
+        //User라는 클래스에 article이 속한다는 뜻
+        //Articles 모델에서 User 모델에 접근하면, 이 글을 어떤 유저가 작성했는지 조회할 수 있다.
+        return $this->belongsTo(User::class);
+    }
 }

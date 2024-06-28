@@ -15,6 +15,7 @@
         @foreach($articles as $article) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
             <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">
                 <p>{{ $article->body }}</p>
+                <p>{{ $article->user->name }}</p>
                 <p>{{ $article->created_at->diffForHumans()}} </p>
             </div>
         @endforeach
@@ -27,21 +28,6 @@
 {{--            <li><a href="/articles?page={{$i+1}}&per_page={{$perPage}}">{{$i+1}}</a></li>--}}
 {{--        @endfor--}}
 {{--    </ul>--}}
-
-    <div class="container p-5">
-        <h1 class="text-2xl">{{ $title }}</h1>
-        <p><a href="/articles/create/">글 작성 페이지</a></p>
-
-        @auth
-            @foreach($results as $result) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
-            <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">
-                <p>{{ $result->body }}</p>
-                <p>{{ $result->created_at->diffForHumans()}} </p>
-            </div>
-            @endforeach
-        @endauth
-        {{--    로그인한 사람한테만 보여주는 blade 문법 : @auth와 @endauth   --}}
-    </div>
 
 
     <div style="width: 100%; height: 300px; display: flex;">
