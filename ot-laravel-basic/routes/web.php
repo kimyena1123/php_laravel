@@ -54,16 +54,33 @@ Route::get('/articles', function(Request $request){
     $title = '글 목록';
     $perPage = $request->input('per_page', 2);
 
-    $articles = Article::select('body','created_at')
-                        ->orderby('created_at', 'desc')
-                        ->paginate($perPage);
+    $articles = Article::select('body', 'created_at', 'user_id')
+        ->orderby('created_at', 'desc')
+        ->paginate($perPage);
 
-    return view('articles.index',
-        [
-            'title'=>$title,
-            'articles' => $articles,
-        ]
-    );
+    // 쿼리 빌더로 조회
+    $results = DB::table('articles as a')
+        ->join('users as u', 'a.user_id', '=', 'u.id')
+        ->select(['a.*', 'u.name'])
+        ->latest()
+        ->paginate($perPage);
+
+    // 쿼리 빌더 결과를 Eloquent 모델 인스턴스로 변환
+    $articleModels = $results->map(function($item) {
+        $article = new Article((array) $item);
+        $article->name = $item->name; // 추가 필드를 설정
+
+        // created_at을 Carbon 인스턴스로 변환
+        $article->created_at = Carbon::parse($item->created_at);
+
+        return $article;
+    });
+
+    return view('articles.index', [
+        'title' => $title,
+        'articles' => $articles,
+        'results' => $articleModels,
+    ]);
 
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
 
