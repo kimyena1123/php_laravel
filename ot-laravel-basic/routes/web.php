@@ -52,11 +52,12 @@ Route::post('/articles', function(Request $request){
 //글 목록 페이지
 Route::get('/articles', function(Request $request){
     $title = '글 목록';
-    $perPage = $request->input('per_page', 2);
 
-    $articles = Article::select('body','created_at', 'user_id')
+    $articles = Article::with('user')->select('body','created_at', 'user_id')
                         ->orderby('created_at', 'desc')
                         ->paginate();
+
+//    $articles->load('user');
 
     $results = DB::table('articles as a')->join('users as u', 'a.user_id', '=', 'u.id')
                                 ->select(['a.*', 'u.name'])
