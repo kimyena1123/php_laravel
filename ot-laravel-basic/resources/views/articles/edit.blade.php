@@ -14,7 +14,8 @@
         <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="POST" class="mt-5">
 
             @csrf
-            <input type="hidden" name="_method" value="PUT" />
+
+            @method('PUT') {{-- <input type="hidden" name="_method" value="PUT" />--}}
             <input type="text" name="body" class="block w-full mb-2 rounded" value="{{ old('body') ?? $article->body }}">
 
             @error('body')
