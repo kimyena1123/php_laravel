@@ -27,7 +27,7 @@ require __DIR__.'/auth.php';
 //글 저장하는 페이지
 Route::get('/articles/create', function(){
     return view('articles.create');
-});
+})->name('articles.create');
 
 // 글 저장하는 method
 Route::post('/articles', function(Request $request){
@@ -47,7 +47,7 @@ Route::post('/articles', function(Request $request){
     ]);
 
     return 'hello';
-});
+})->name('articles.store');
 
 //글 목록 페이지
 Route::get('/articles', function(Request $request){
@@ -71,10 +71,10 @@ Route::get('/articles', function(Request $request){
     );
 
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
-});
+})->name('articles.index');
 
 //Route::get('/articles/{모델이름}', function(모델){
 Route::get('/articles/{article}', function(Article $article){
 
     return view('articles.show', ['article' => $article]);
-});
+})->name('articles.show');

@@ -9,7 +9,7 @@
     <body class="bg-blue-100">
         <div class="container p-5">
             <h1 class="text-2xl">개별 글 보기</h1>
-            <p><a href="/articles">글 목록 페이지</a></p>
+            <p><a href="{{ route('articles.index') }}">글 목록 페이지</a></p>
 
             작성내용: {{ $article->body }}
 

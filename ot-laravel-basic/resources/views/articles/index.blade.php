@@ -9,14 +9,16 @@
     <body class="bg-blue-100">
     <div class="container p-5">
         <h1 class="text-2xl">{{ $title }}</h1>
-        <p><a href="/articles/create/">글 작성 페이지</a></p>
+        <p><a href="{{ route('articles.create') }}">글 작성 페이지</a></p>
 
         @auth
         @foreach($articles as $article) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
             <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">
                 <p>작성내용: {{ $article->body }}</p>
                 <p>작성자: {{ $article->user->name }}</p>
-                <p><a href="/articles/{{ $article->id }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>
+{{--                <p><a href="/articles/{{ $article->id }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>--}}
+                <p><a href="{{ route('articles.show', ['article' => $article->id, 'sort' => 'asc']) }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>
+
             </div>
         @endforeach
         @endauth

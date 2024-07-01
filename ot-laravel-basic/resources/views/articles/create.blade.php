@@ -10,9 +10,9 @@
     <body class="bg-blue-100">
     <div class="container p-5">
         <h1 class="text-2xl">글쓰기</h1>
-        <p><a href="/articles/">글 목록</a></p>
+        <p><a href="{{ route('articles.index') }}">글 목록</a></p>
 
-        <form action="/articles" {{-- action="{{ route('articles.store') }}"--}} method="POST" class="mt-5">
+        <form action="{{ route('articles.store') }}" method="POST" class="mt-5">
 
             @csrf {{-- <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />--}}
             <input type="text" name="body" class="block w-full mb-2 rounded" value="{{old('body')}}">
