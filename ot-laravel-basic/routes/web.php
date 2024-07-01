@@ -57,21 +57,12 @@ Route::get('/articles', function(Request $request){
                         ->orderby('created_at', 'desc')
                         ->paginate();
 
-//    $articles->load('user');
-
-    $results = DB::table('articles as a')->join('users as u', 'a.user_id', '=', 'u.id')
-                                ->select(['a.*', 'u.name'])
-                                ->latest()
-                                ->paginate();
-
     return view('articles.index',
         [
             'title'=>$title,
             'articles' => $articles,
-            'results' => $results,
         ]
     );
 
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
-
 });
