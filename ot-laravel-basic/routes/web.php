@@ -46,6 +46,8 @@ Route::post('/articles', function(Request $request){
         'user_id' => Auth::id(),
     ]);
 
+    return redirect()->route('articles.index');
+
 })->name('articles.store');
 
 //글 목록 페이지
@@ -96,7 +98,7 @@ Route::put('articles/{article}/update', function(Request $request, Article $arti
     $article->body = $input['body'];
     $article->save();
 
-
+    return redirect()->route('articles.index');
 })->name('articles.update');
 
 
