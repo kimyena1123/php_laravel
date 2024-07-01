@@ -14,9 +14,9 @@
         @auth
         @foreach($articles as $article) {{-- @for($i=0; $i<$articles->count(); $i++) --}}
             <div style="border:1px solid #bbb; margin: 5px; padding: 10px;">
-                <p>{{ $article->body }}</p>
-                <p>{{ $article->user->name }}</p>
-                <p>{{ $article->created_at->diffForHumans()}} </p>
+                <p>작성내용: {{ $article->body }}</p>
+                <p>작성자: {{ $article->user->name }}</p>
+                <p><a href="/articles/{{ $article->id }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>
             </div>
         @endforeach
         @endauth

@@ -53,16 +53,28 @@ Route::post('/articles', function(Request $request){
 Route::get('/articles', function(Request $request){
     $title = '글 목록';
 
-    $articles = Article::with('user')->select('body','created_at', 'user_id')
+    $articles = Article::with('user')
                         ->orderby('created_at', 'desc')
                         ->paginate();
+
+    $results = DB::table('articles as a')->join('users as u', 'a.user_id', '=', 'u.id')
+                                ->select(['a.*', 'u.name'])
+                                ->latest()
+                                ->paginate();
 
     return view('articles.index',
         [
             'title'=>$title,
             'articles' => $articles,
+            'results' => $results,
         ]
     );
 
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
+});
+
+Route::get('/articles/{id}', function($id){
+    $article = Article::find($id);
+
+    return view('articles.show', ['article' => $article]);
 });
