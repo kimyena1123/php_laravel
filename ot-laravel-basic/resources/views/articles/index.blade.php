@@ -19,6 +19,9 @@
 {{--                <p><a href="/articles/{{ $article->id }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>--}}
                 <p><a href="{{ route('articles.show', ['article' => $article->id, 'sort' => 'asc']) }}">작성시간: {{ $article->created_at->diffForHumans()}}</a> </p>
 
+                <span><a href="{{ route('articles.edit', ['article' => $article->id]) }}">수정</a></span>
+                <span><a href="#">삭제</a></span>
+
             </div>
         @endforeach
         @endauth
