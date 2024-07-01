@@ -73,8 +73,8 @@ Route::get('/articles', function(Request $request){
 //    return view('articles.index')->with('articles', $articles)->with('title', $title);
 });
 
-Route::get('/articles/{id}', function($id){
-    $article = Article::find($id);
+//Route::get('/articles/{모델이름}', function(모델){
+Route::get('/articles/{article}', function(Article $article){
 
     return view('articles.show', ['article' => $article]);
 });
