@@ -15,7 +15,7 @@
 
             @csrf
 
-            @method('PUT') {{-- <input type="hidden" name="_method" value="PUT" />--}}
+            @method('PATCH') {{-- <input type="hidden" name="_method" value="PUT" />--}}
             <input type="text" name="body" class="block w-full mb-2 rounded" value="{{ old('body') ?? $article->body }}">
 
             @error('body')
