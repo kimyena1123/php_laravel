@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                        {{ __('글 목록 페이지') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('articles.create')" :active="request()->routeIs('articles.create')">
+                        {{ __('글 작성 페이지') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -70,6 +78,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                {{ __('글 목록 페이지') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('articles.create')" :active="request()->routeIs('articles.create')">
+                {{ __('글 작성 페이지') }}
+            </x-responsive-nav-link>
+    \
         </div>
 
         <!-- Responsive Settings Options -->
