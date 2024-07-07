@@ -21,7 +21,7 @@
 
                 <span><a href="{{ route('articles.edit', ['article' => $article->id]) }}">수정</a></span>
 
-                <form action="{{ route('articles.delete', ['article' => $article->id]) }}" method="POST">
+                <form action="{{ route('articles.destroy', ['article' => $article->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button>삭제</button>

@@ -26,19 +26,24 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::controller(ArticleController::class)->group(function(){
-    //글 저장하는 페이지
-    Route::get('/articles/create', 'create')->name('articles.create');
+//Route::controller(ArticleController::class)->group(function(){
+//
+//    Route::get('/articles/create', 'create')->name('articles.create'); //글 저장하는 페이지
+//    Route::post('/articles', 'store')->name('articles.store'); // 글 저장하는 method
+//    Route::get('/articles', 'index')->name('articles.index'); //글 목록 페이지
+//    Route::get('/articles/{article}', 'show')->name('articles.show');
+//    Route::get('articles/{article}/edit', 'edit')->name('articles.edit');
+//    Route::patch('articles/{article}', 'update')->name('articles.update');
+//    Route::delete('articles/{article}', 'destroy')->name('articles.destroy');
+//});
+route::resource('articles', ArticleController::class);
 
-    // 글 저장하는 method
-    Route::post('/articles', 'store')->name('articles.store');
 
-    //글 목록 페이지
-    Route::get('/articles', 'index')->name('articles.index');
-    Route::get('/articles/{article}', 'show')->name('articles.show');
-    Route::get('articles/{article}/edit', 'edit')->name('articles.edit');
-    Route::patch('articles/{article}', 'update')->name('articles.update');
-    Route::delete('articles/{article}', 'destroy')->name('articles.delete');
-});
+
+
+
+
+
+
 
 
